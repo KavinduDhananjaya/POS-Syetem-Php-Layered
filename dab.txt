@@ -1,0 +1,41 @@
+create database MyPos3;
+use MyPos3;
+
+create table customer(
+FirstName varchar(50),
+LastName varchar(50),
+CID varchar(50),
+Address varchar(50),
+Email varchar(50),
+Tell varchar(50),
+constraint primary key(CID)
+);
+
+
+create table item(
+ItemCode varchar(50),
+ItemName varchar(50),
+ItemBrand varchar(50),
+UnitPrice double(20,2),
+Quantity varchar(50),
+constraint primary key(ItemCode)
+);
+
+ 
+create table orders(
+OrderId varchar(50),
+OrderDate varchar(50),
+CID varchar(50),
+constraint primary key(OrderId),
+constraint foreign key(CID) references customer(CID) 
+);
+
+
+create table orderdetails(
+OrderId varchar(50),
+ItemCode varchar(50),
+Quantity int,
+constraint primary key(OrderId,ItemCode),
+constraint foreign key(OrderId) references orders(OrderId),
+constraint foreign key(ItemCode) references item(ItemCode)
+);
